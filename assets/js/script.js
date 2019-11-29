@@ -79,6 +79,12 @@ function switchTurns(player) {
     }
 }
 
+function addCellEvent() {
+    for (let i = 0; i < 9; i++) {
+        document.getElementById(`${i}`).onclick = function() {return i}
+    }
+}
+
 function gameStarter() {
     let playerone = document.createElement("form");
     document.getElementById("playerone").appendChild(playerone);
@@ -99,6 +105,7 @@ function gameStarter() {
 }
 
 function RunnerFunction() {
+    addCellEvent();
     let playerOneName = "Player 1";
     let playerTwoName = "Plater 2";
     if (document.getElementById("playeronename").value !== "") {
@@ -109,13 +116,13 @@ function RunnerFunction() {
     }
     const player1 = player(playerOneName, 1);
     const player2 = player(playerTwoName, 2);
+    let currentPlayer = player1;
     game.board();
     while (game.checkWinner() == 0) {
-      
+        game.move(currentPlayer, addCellEvent());
+        currentPlayer = switchTurns(currentPlayer);
     }
-    /*for (i = 0; i < 9; i++) {
-        let cell-`${i}` = document.getElementById(i);
-    }*/
+
 }
 
 

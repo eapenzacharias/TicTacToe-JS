@@ -1,1 +1,8 @@
 /* No CSS *//*# sourceMappingURL=style.css.map */
+div {
+    height: 20px;
+}
+
+.cell {
+    border: 1px solid black;
+}
