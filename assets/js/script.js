@@ -85,17 +85,17 @@ function gameStarter() {
     let PlayerOneName = document.createElement("input");
     PlayerOneName.setAttribute("type", "text");
     PlayerOneName.setAttribute("id", "playeronename");
-    document.getElementById("playerone").appendChild(PlayerOneName);
+    playerone.appendChild(PlayerOneName);
     let playertwo = document.createElement("form");
     document.getElementById("playertwo").appendChild(playertwo);
     let PlayerTwoName = document.createElement("input");
     PlayerTwoName.setAttribute("id", "playertwoname");
     PlayerTwoName.setAttribute("type", "text");
-    document.getElementById("playertwo").appendChild(PlayerTwoName);
+    playertwo.appendChild(PlayerTwoName);
     let startGame = document.createElement("button");
-    startGame.innerHTML("Start Game");
-    document.getElementById("player-details").appendChild(startGame);
     startGame.onclick = () => RunnerFunction();
+    startGame.appendChild(document.createTextNode("Start Game"));
+    document.getElementById("player-details").appendChild(startGame);
 }
 
 function RunnerFunction() {
@@ -109,8 +109,10 @@ function RunnerFunction() {
     }
     const player1 = player(playerOneName, 1);
     const player2 = player(playerTwoName, 2);
-
     game.board();
+    while (game.checkWinner() == 0) {
+      
+    }
     /*for (i = 0; i < 9; i++) {
         let cell-`${i}` = document.getElementById(i);
     }*/
@@ -119,7 +121,7 @@ function RunnerFunction() {
 
 //let boardDom = document.getElementById("board");
 
-
+gameStarter();
 game.move(1, 0);
 game.move(1, 3);
 game.move(1, 6);
