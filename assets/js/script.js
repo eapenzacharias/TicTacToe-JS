@@ -6,6 +6,9 @@ const player = (name, symbol, score = 0) => {
     }
 }
 
+let playerOneName = "Player 1";
+let playerTwoName = "Player 2";
+
 const game = (() => {
     let board = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 
@@ -112,11 +115,17 @@ function addCellEvent(currentPlayer) {
 
     }
 }
+
 function scoreBoard() {
     let scorePlayer1 = document.getElementById("player1-score");
     let scorePlayer2 = document.getElementById("player2-score");
+    let onesName = document.getElementById("onesname");
+    let twosName = document.getElementById("twosname");
     scorePlayer1.innerHTML = `${player1.score}`;
-    scorePlayer2.innerHTML = `${player2.score}`
+    scorePlayer2.innerHTML = `${player2.score}`;
+    onesName.innerHTML = `${playerOneName}`;
+    twosName.innerHTML = `${playerTwoName}`;
+
 }
 
 function decide(i) {
@@ -140,36 +149,33 @@ function decide(i) {
 function gameStarter() {
     let playerone = document.createElement("form");
     document.getElementById("playerone").appendChild(playerone);
-    let PlayerOneName = document.createElement("input");
-    PlayerOneName.setAttribute("type", "text");
-    PlayerOneName.setAttribute("id", "playeronename");
-    playerone.appendChild(PlayerOneName);
+    let inputOneName = document.createElement("input");
+    inputOneName.setAttribute("type", "text");
+    playerone.appendChild(inputOneName);
+
     let playertwo = document.createElement("form");
     document.getElementById("playertwo").appendChild(playertwo);
-    let PlayerTwoName = document.createElement("input");
-    PlayerTwoName.setAttribute("id", "playertwoname");
-    PlayerTwoName.setAttribute("type", "text");
-    playertwo.appendChild(PlayerTwoName);
+    let inputTwoName = document.createElement("input");
+    inputTwoName.setAttribute("type", "text");
+    playertwo.appendChild(inputTwoName);
+
     let startGame = document.createElement("button");
     startGame.onclick = () => RunnerFunction();
     startGame.appendChild(document.createTextNode("Start Game"));
     document.getElementById("player-details").appendChild(startGame);
-    let playerOneName = "Player 1";
-    let playerTwoName = "Player 2";
-    if (document.getElementById("playeronename").value !== "") {
-        playerOneName = document.getElementById("playeronename").value;
+
+    if (inputOneName.value !== "") {
+        playerOneName = inputOneName.value;
     }
-    if (document.getElementById("playertwoname").value !== "") {
-        playerTwoName = document.getElementById("playertwoname").value;
+    if (inputTwoName.value !== "") {
+        playerTwoName = inputTwoName.value;
     }
-    player1 = player(playerOneName, 1);
-    player2 = player(playerTwoName, 2);
+    player1 = player(playerOneName, 1, 0);
+    player2 = player(playerTwoName, 2, 0);
     startGame.onclick = () => RunnerFunction(player1, player2);
     scoreBoard(player1, player2);
 }
 
-//var player1;
-//var player2;
 
 function RunnerFunction(player1, player2) {
     game.clearBoard();
