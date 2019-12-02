@@ -112,7 +112,12 @@ function addCellEvent(currentPlayer) {
 
     }
 }
-
+function scoreBoard() {
+    let scorePlayer1 = document.getElementById("player1-score");
+    let scorePlayer2 = document.getElementById("player2-score");
+    scorePlayer1.innerHTML = `${player1.score}`;
+    scorePlayer2.innerHTML = `${player2.score}`
+}
 
 function decide(i) {
     let msgBoard = document.getElementById("winner");
@@ -120,13 +125,16 @@ function decide(i) {
     msgBoard.appendChild(header);
     if (i == 1) {
         var winnerText = document.createTextNode(`${player1.name} WINS!`);
+        player1.score++;
+        document.getElementById("player1-score").innerHTML = `${player1.score}`;
     } else if (i == 2) {
         var winnerText = document.createTextNode(`${player2.name} WINS!`);
+        player2.score++;
+        document.getElementById("player2-score").innerHTML = `${player2.score}`;
     } else {
         var winnerText = document.createTextNode(`DRAW`);
     }
     header.appendChild(winnerText);
-    //gameStarter();
 }
 
 function gameStarter() {
@@ -146,12 +154,6 @@ function gameStarter() {
     startGame.onclick = () => RunnerFunction();
     startGame.appendChild(document.createTextNode("Start Game"));
     document.getElementById("player-details").appendChild(startGame);
-}
-var player1;
-var player2;
-
-function RunnerFunction() {
-    game.clearBoard();
     let playerOneName = "Player 1";
     let playerTwoName = "Player 2";
     if (document.getElementById("playeronename").value !== "") {
@@ -162,6 +164,15 @@ function RunnerFunction() {
     }
     player1 = player(playerOneName, 1);
     player2 = player(playerTwoName, 2);
+    startGame.onclick = () => RunnerFunction(player1, player2);
+    scoreBoard(player1, player2);
+}
+
+//var player1;
+//var player2;
+
+function RunnerFunction(player1, player2) {
+    game.clearBoard();
     let currentPlayer = 1;
     game.board();
     addCellEvent(currentPlayer);
