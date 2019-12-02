@@ -1,8 +1,72 @@
-/* No CSS *//*# sourceMappingURL=style.css.map */
-div {
-    height: 20px;
+html {
+  height: 100%;
+  font-family: 'Fredoka One', cursive;
+  margin: 0;
 }
 
-.cell {
-    border: 1px solid black;
+html body {
+  color: #f0f0f0;
+  background-color: #1f1f1f;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: center;
+  margin: 0;
 }
+
+html body h1 {
+  font-size: 50px;
+  margin: 50px;
+}
+
+html body .container {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #1a1a1a;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 auto;
+          flex: 1 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+html body .board {
+  width: 390px;
+  height: 390px;
+  margin: 20px 0 50px 0;
+  background-color: #525252;
+  padding: 0;
+}
+
+html body .board .board-grid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: (1fr)[3];
+  -ms-grid-columns: (1fr)[3];
+      grid-template: repeat(3, 1fr)/repeat(3, 1fr);
+  -webkit-box-pack: stretch;
+      -ms-flex-pack: stretch;
+          justify-content: stretch;
+  grid-gap: 10px;
+  height: 100%;
+  width: 100%;
+}
+
+html body .board .board-grid .cell {
+  font-size: 50px;
+  font-weight: 800;
+  text-align: center;
+  padding: 35px 0;
+  background-color: #1a1a1a;
+}
+/*# sourceMappingURL=style.css.map */
