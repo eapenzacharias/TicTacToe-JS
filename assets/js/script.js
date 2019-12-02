@@ -61,7 +61,7 @@ const game = (() => {
             let cell = document.getElementById(place);
             cell.innerHTML = "O";
         }
-        board[place] = player
+        board[place] = player;
     }
 
     return {
@@ -79,9 +79,20 @@ function switchTurns(player) {
     }
 }
 
-function addCellEvent() {
+function addCellEvent(currentPlayer) {
     for (let i = 0; i < 9; i++) {
-        document.getElementById(`${i}`).onclick = function() {return i}
+        document.getElementById(`${i}`).onclick = function() {
+            game.move(currentPlayer, i)};
+            if (game.checkWinner() == 0) {
+                return currentPlayer = switchTurns(currentPlayer);
+            } else if (game.checkWinner() == 1) {
+                console.log('player 1 wins!');
+            } else if (game.checkWinner() == 2) {
+                console.log('player 2 wins!');
+            } else {
+                console.log("DRAW");
+            }
+
     }
 }
 
@@ -105,7 +116,6 @@ function gameStarter() {
 }
 
 function RunnerFunction() {
-    addCellEvent();
     let playerOneName = "Player 1";
     let playerTwoName = "Plater 2";
     if (document.getElementById("playeronename").value !== "") {
@@ -116,21 +126,17 @@ function RunnerFunction() {
     }
     const player1 = player(playerOneName, 1);
     const player2 = player(playerTwoName, 2);
-    let currentPlayer = player1;
+    let currentPlayer = 1;
     game.board();
-    while (game.checkWinner() == 0) {
-        game.move(currentPlayer, addCellEvent());
-        currentPlayer = switchTurns(currentPlayer);
-    }
-
+    addCellEvent(currentPlayer);
 }
 
 
 //let boardDom = document.getElementById("board");
 
 gameStarter();
-game.move(1, 0);
-game.move(1, 3);
-game.move(1, 6);
+//game.move(1, 0);
+//game.move(1, 3);
+//game.move(1, 6);
 console.log(game.checkWinner());
 //console.log(checkRow());
