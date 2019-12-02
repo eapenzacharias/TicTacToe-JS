@@ -151,33 +151,34 @@ function gameStarter() {
     document.getElementById("playerone").appendChild(playerone);
     let inputOneName = document.createElement("input");
     inputOneName.setAttribute("type", "text");
+    inputOneName.setAttribute("id", "input-player1");
     playerone.appendChild(inputOneName);
 
     let playertwo = document.createElement("form");
     document.getElementById("playertwo").appendChild(playertwo);
     let inputTwoName = document.createElement("input");
     inputTwoName.setAttribute("type", "text");
+    inputTwoName.setAttribute("id", "input-player2");
     playertwo.appendChild(inputTwoName);
 
     let startGame = document.createElement("button");
     startGame.onclick = () => RunnerFunction();
     startGame.appendChild(document.createTextNode("Start Game"));
     document.getElementById("player-details").appendChild(startGame);
-
-    if (inputOneName.value !== "") {
-        playerOneName = inputOneName.value;
-    }
-    if (inputTwoName.value !== "") {
-        playerTwoName = inputTwoName.value;
-    }
-    player1 = player(playerOneName, 1, 0);
-    player2 = player(playerTwoName, 2, 0);
+    player1 = player("Player 1", 1, 0);
+    player2 = player("Player 2", 2, 0);
     startGame.onclick = () => RunnerFunction(player1, player2);
     scoreBoard(player1, player2);
 }
 
 
 function RunnerFunction(player1, player2) {
+    if (document.getElementById("input-player1").value !== "") {
+        player1.name = document.getElementById("input-player1").value;
+    }
+    if (document.getElementById("input-player2").value !== "") {
+        player2.name = document.getElementById("input-player2").value;
+    }
     game.clearBoard();
     let currentPlayer = 1;
     game.board();
