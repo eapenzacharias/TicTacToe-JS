@@ -92,8 +92,12 @@ const game = (() => {
 
 function switchTurns(player) {
     if (player == 1) {
+        document.getElementById("twosname").style.color = '#66ccff';
+        document.getElementById("onesname").style.color = '#ffffff';
         return 2;
     } else {
+        document.getElementById("onesname").style.color = '#66ccff';
+        document.getElementById("twosname").style.color = '#ffffff';
         return 1;
     }
 }
@@ -169,6 +173,7 @@ function gameStarter() {
     document.getElementById("player-details").appendChild(startGame);
     player1 = player("Player 1", 1, 0);
     player2 = player("Player 2", 2, 0);
+    document.getElementById("onesname").style.color = '#66ccff';
     startGame.onclick = () => RunnerFunction(player1, player2);
 }
 
