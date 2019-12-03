@@ -77,11 +77,16 @@ const game = (() => {
         winner.innerHTML = "";
     }
 
+    const fillBoard = () => {
+        board = [9, 9, 9, 9, 9, 9, 9, 9, 9];
+    }
+
     return {
         board: () => board,
         move,
         checkWinner,
-        clearBoard
+        clearBoard,
+        fillBoard
     };
 })();
 
@@ -123,14 +128,15 @@ function scoreBoard() {
     let twosName = document.getElementById("twosname");
     scorePlayer1.innerHTML = `${player1.score}`;
     scorePlayer2.innerHTML = `${player2.score}`;
-    onesName.innerHTML = `${playerOneName}`;
-    twosName.innerHTML = `${playerTwoName}`;
+    onesName.innerHTML = `${playerOneName}: &nbsp;`;
+    twosName.innerHTML = `${playerTwoName}: &nbsp;`;
 
 }
 
 function decide(i) {
     let msgBoard = document.getElementById("winner");
     let header = document.createElement("h3");
+    game.fillBoard();
     msgBoard.appendChild(header);
     if (i == 1) {
         var winnerText = document.createTextNode(`${player1.name} WINS!`);
@@ -152,6 +158,7 @@ function gameStarter() {
     let inputOneName = document.createElement("input");
     inputOneName.setAttribute("type", "text");
     inputOneName.setAttribute("id", "input-player1");
+    inputOneName.setAttribute("placeholder", "Name of Player 1")
     playerone.appendChild(inputOneName);
 
     let playertwo = document.createElement("form");
@@ -159,26 +166,30 @@ function gameStarter() {
     let inputTwoName = document.createElement("input");
     inputTwoName.setAttribute("type", "text");
     inputTwoName.setAttribute("id", "input-player2");
+    inputTwoName.setAttribute("placeholder", "Name of Player 2")
     playertwo.appendChild(inputTwoName);
 
     let startGame = document.createElement("button");
     startGame.onclick = () => RunnerFunction();
-    startGame.appendChild(document.createTextNode("Start Game"));
+    startGame.appendChild(document.createTextNode("START GAME"));
     document.getElementById("player-details").appendChild(startGame);
     player1 = player("Player 1", 1, 0);
     player2 = player("Player 2", 2, 0);
     startGame.onclick = () => RunnerFunction(player1, player2);
-    scoreBoard(player1, player2);
+
 }
 
 
 function RunnerFunction(player1, player2) {
     if (document.getElementById("input-player1").value !== "") {
         player1.name = document.getElementById("input-player1").value;
+        playerOneName = player1.name;
     }
     if (document.getElementById("input-player2").value !== "") {
         player2.name = document.getElementById("input-player2").value;
+        playerTwoName = player2.name;
     }
+    scoreBoard(player1, player2);
     game.clearBoard();
     let currentPlayer = 1;
     game.board();

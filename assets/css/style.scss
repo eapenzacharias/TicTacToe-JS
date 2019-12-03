@@ -3,8 +3,8 @@ html {
     font-family: 'Fredoka One', cursive;
     margin: 0;
     body {
-        color: rgb(240, 240, 240);
-        background-color: rgb(31, 31, 31);
+        color: #f0f0f0;
+        background-color: #1a1a1a;
         display: flex;
         flex-direction: column;
         text-align: center;
@@ -15,7 +15,6 @@ html {
         }
         .container {
             align-items: center;
-            background-color: rgb(26, 26, 26);
             flex: 1 0 auto;
             display: flex;
             flex-direction: column;
@@ -24,7 +23,7 @@ html {
             width: 390px;
             height: 390px;
             margin: 20px 0 50px 0;
-            background-color: rgb(82, 82, 82);
+            background-color: #525252;
             padding: 0;
             .board-grid {
                 display: grid;
@@ -38,8 +37,48 @@ html {
                     font-weight: 800;
                     text-align: center;
                     padding: 31px 0;
-                    background-color: rgb(26, 26, 26);
+                    background-color: #1a1a1a;
                 }
+            }
+        }
+        #winner {
+            h3 {
+                color: #35ffff;
+                font-size: 30px;
+                font-weight: 300;
+                margin: 15px;
+            }
+        }
+        .score-board {
+            height: 70px;
+            width: 200px;
+            margin: 5px 0 20px 0;
+            .scores {
+                width: 180px;
+                font-size: 20px;
+                margin: 5px;
+            }
+        }
+        #player-details {
+            input {
+                border: none;
+                border-bottom: 1px solid #ffffff;
+                background-color: #1a1a1a;
+                color: #ffffff;
+                height: 25px;
+                width: 370px;
+                margin: 10px;
+                font-size: 18px;
+            }
+            button {
+                border: 2px solid #ffffff;
+                border-radius: 5px;
+                background-color: #1a1a1a;
+                margin: 20px 0 10px 0;
+                height: 45px;
+                font-size: 25px;
+                color: #ffffff;
+                width: 250px;
             }
         }
     }
