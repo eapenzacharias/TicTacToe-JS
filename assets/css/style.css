@@ -12,8 +12,8 @@ html body {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
   text-align: center;
   margin: 0;
 }
@@ -26,18 +26,18 @@ html body h1 {
 
 html body .container {
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   -webkit-box-flex: 1;
-  -ms-flex: 1 0 auto;
-  flex: 1 0 auto;
+      -ms-flex: 1 0 auto;
+          flex: 1 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 html body .board {
@@ -53,10 +53,10 @@ html body .board .board-grid {
   display: grid;
   -ms-grid-rows: (1fr)[3];
   -ms-grid-columns: (1fr)[3];
-  grid-template: repeat(3, 1fr)/repeat(3, 1fr);
+      grid-template: repeat(3, 1fr)/repeat(3, 1fr);
   -webkit-box-pack: stretch;
-  -ms-flex-pack: stretch;
-  justify-content: stretch;
+      -ms-flex-pack: stretch;
+          justify-content: stretch;
   grid-gap: 10px;
   height: 100%;
   width: 100%;
@@ -122,6 +122,4 @@ html body #player-details button {
   color: #ffffff;
   width: 250px;
 }
-
-
 /*# sourceMappingURL=style.css.map */
