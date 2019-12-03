@@ -109,11 +109,6 @@ function addCellEvent(currentPlayer) {
                     return currentPlayer = switchTurns(currentPlayer);
                 } else {
                     decide(game.checkWinner());
-                    //} else if (game.checkWinner() == 2) {
-                    //    console.log('player 2 wins!');
-                    //} else {
-                    //    console.log("DRAW");
-                    //}
                 }
             }
         });
@@ -130,7 +125,6 @@ function scoreBoard() {
     scorePlayer2.innerHTML = `${player2.score}`;
     onesName.innerHTML = `${playerOneName}: &nbsp;`;
     twosName.innerHTML = `${playerTwoName}: &nbsp;`;
-
 }
 
 function decide(i) {
@@ -176,9 +170,7 @@ function gameStarter() {
     player1 = player("Player 1", 1, 0);
     player2 = player("Player 2", 2, 0);
     startGame.onclick = () => RunnerFunction(player1, player2);
-
 }
-
 
 function RunnerFunction(player1, player2) {
     if (document.getElementById("input-player1").value !== "") {
@@ -195,8 +187,5 @@ function RunnerFunction(player1, player2) {
     game.board();
     addCellEvent(currentPlayer);
 }
-
-
-//let boardDom = document.getElementById("board");
 
 gameStarter();
