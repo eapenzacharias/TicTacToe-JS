@@ -19,8 +19,9 @@ html body {
 }
 
 html body h1 {
-  font-size: 50px;
-  margin: 50px;
+  font-size: 45px;
+  font-weight: 300;
+  margin: 40px;
 }
 
 html body .container {
@@ -42,7 +43,7 @@ html body .container {
 html body .board {
   width: 390px;
   height: 390px;
-  margin: 20px 0 50px 0;
+  margin: 20px 0 15px 0;
   background-color: #525252;
   padding: 0;
 }
@@ -69,8 +70,12 @@ html body .board .board-grid .cell {
   background-color: #1a1a1a;
 }
 
+html body #chance {
+  margin: 5px 0 25px 0;
+}
+
 html body #winner h3 {
-  color: #35ffff;
+  color: #ffffff;
   font-size: 30px;
   font-weight: 300;
   margin: 15px;
@@ -86,6 +91,14 @@ html body .score-board .scores {
   width: 180px;
   font-size: 20px;
   margin: 5px;
+}
+
+html body .score-board .scores #onesname {
+  color: #c88300;
+}
+
+html body .score-board .scores #twosname {
+  color: #00c86a;
 }
 
 html body #player-details input {

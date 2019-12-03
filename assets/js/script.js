@@ -92,12 +92,12 @@ const game = (() => {
 
 function switchTurns(player) {
     if (player == 1) {
-        document.getElementById("twosname").style.color = '#66ccff';
-        document.getElementById("onesname").style.color = '#ffffff';
+        document.getElementById("board").style.background = '#00c86a';
+        document.getElementById("chance").innerHTML = `${playerTwoName}'\s turn`;
         return 2;
     } else {
-        document.getElementById("onesname").style.color = '#66ccff';
-        document.getElementById("twosname").style.color = '#ffffff';
+        document.getElementById("board").style.background = '#c88300';
+        document.getElementById("chance").innerHTML = `${playerOneName}'\s turn`;
         return 1;
     }
 }
@@ -173,7 +173,6 @@ function gameStarter() {
     document.getElementById("player-details").appendChild(startGame);
     player1 = player("Player 1", 1, 0);
     player2 = player("Player 2", 2, 0);
-    document.getElementById("onesname").style.color = '#66ccff';
     startGame.onclick = () => RunnerFunction(player1, player2);
 }
 
@@ -186,6 +185,8 @@ function RunnerFunction(player1, player2) {
         player2.name = document.getElementById("input-player2").value;
         playerTwoName = player2.name;
     }
+    document.getElementById("board").style.background = '#c88300';
+    document.getElementById("chance").innerHTML = `${playerOneName}'\s turn`;
     scoreBoard(player1, player2);
     game.clearBoard();
     let currentPlayer = 1;

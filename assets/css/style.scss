@@ -10,8 +10,9 @@ html {
         text-align: center;
         margin: 0;
         h1 {
-            font-size: 50px;
-            margin: 50px;
+            font-size: 45px;
+            font-weight: 300;
+            margin: 40px;
         }
         .container {
             align-items: center;
@@ -22,7 +23,7 @@ html {
         .board {
             width: 390px;
             height: 390px;
-            margin: 20px 0 50px 0;
+            margin: 20px 0 15px 0;
             background-color: #525252;
             padding: 0;
             .board-grid {
@@ -41,9 +42,12 @@ html {
                 }
             }
         }
+        #chance {
+            margin: 5px 0 25px 0;
+        }
         #winner {
             h3 {
-                color: #35ffff;
+                color: #ffffff;
                 font-size: 30px;
                 font-weight: 300;
                 margin: 15px;
@@ -57,6 +61,12 @@ html {
                 width: 180px;
                 font-size: 20px;
                 margin: 5px;
+                #onesname {
+                    color: #c88300;
+                }
+                #twosname {
+                    color: #00c86a;
+                }
             }
         }
         #player-details {
