@@ -111,11 +111,11 @@ function decide(i) {
   msgBoard.appendChild(header);
   if (i === 1) {
     winnerText = document.createTextNode(`${player1.name} WINS!`);
-    player1.score++;
+    player1.score += 1;
     document.getElementById('player1-score').innerHTML = `${player1.score}`;
   } else if (i === 2) {
     winnerText = document.createTextNode(`${player2.name} WINS!`);
-    player2.score++;
+    player2.score += 1;
     document.getElementById('player2-score').innerHTML = `${player2.score}`;
   } else {
     winnerText = document.createTextNode('DRAW');
