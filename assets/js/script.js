@@ -103,15 +103,36 @@ function switchTurns(player) {
   return 1;
 }
 
+function decide(i) {
+  const msgBoard = document.getElementById('winner');
+  const header = document.createElement('h3');
+  game.fillBoard();
+  let winnerText = '';
+  msgBoard.appendChild(header);
+  if (i === 1) {
+    winnerText = document.createTextNode(`${player1.name} WINS!`);
+    player1.score++;
+    document.getElementById('player1-score').innerHTML = `${player1.score}`;
+  } else if (i === 2) {
+    winnerText = document.createTextNode(`${player2.name} WINS!`);
+    player2.score++;
+    document.getElementById('player2-score').innerHTML = `${player2.score}`;
+  } else {
+    winnerText = document.createTextNode('DRAW');
+  }
+  header.appendChild(winnerText);
+}
+
 function addCellEvent(currentPlayer) {
   for (let i = 0; i < 9; i += 1) {
     const cell = document.getElementById(`${i}`);
     cell.addEventListener('click', () => {
       const board = game.board();
-      if (board[i] == 0) {
+      if (board[i] === 0) {
         cell.removeEventListener('click', game.move(currentPlayer, i));
-        if (game.checkWinner() == 0) {
-          return currentPlayer = switchTurns(currentPlayer);
+        if (game.checkWinner() === 0) {
+          currentPlayer = switchTurns(currentPlayer);
+          return currentPlayer;
         }
         decide(game.checkWinner());
       }
@@ -130,25 +151,6 @@ function scoreBoard() {
   twosName.innerHTML = `${playerTwoName}: &nbsp;`;
 }
 
-function decide(i) {
-  const msgBoard = document.getElementById('winner');
-  const header = document.createElement('h3');
-  game.fillBoard();
-  var winnerText = '';
-  msgBoard.appendChild(header);
-  if (i == 1) {
-    winnerText = document.createTextNode(`${player1.name} WINS!`);
-    player1.score++;
-    document.getElementById('player1-score').innerHTML = `${player1.score}`;
-  } else if (i == 2) {
-    winnerText = document.createTextNode(`${player2.name} WINS!`);
-    player2.score++;
-    document.getElementById('player2-score').innerHTML = `${player2.score}`;
-  } else {
-    winnerText = document.createTextNode('DRAW');
-  }
-  header.appendChild(winnerText);
-}
 
 function RunnerFunction() {
   if (document.getElementById('input-player1').value !== '') {
