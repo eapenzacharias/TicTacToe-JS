@@ -13,9 +13,11 @@ const game = (() => {
   const checkRow = () => {
     if (board[0] === board[1] && board[0] === board[2] && board[0] !== 0) {
       return board[0];
-    } if (board[3] === board[4] && board[3] === board[5] && board[3] !== 0) {
+    }
+    if (board[3] === board[4] && board[3] === board[5] && board[3] !== 0) {
       return board[3];
-    } if (board[6] === board[7] && board[6] === board[8] && board[6] !== 0) {
+    }
+    if (board[6] === board[7] && board[6] === board[8] && board[6] !== 0) {
       return board[6];
     }
     return 0;
@@ -24,9 +26,11 @@ const game = (() => {
   const checkColumn = () => {
     if (board[0] === board[3] && board[0] === board[6] && board[0] !== 0) {
       return board[0];
-    } if (board[1] === board[4] && board[1] === board[7] && board[1] !== 0) {
+    }
+    if (board[1] === board[4] && board[1] === board[7] && board[1] !== 0) {
       return board[1];
-    } if (board[2] === board[5] && board[2] === board[8] && board[2] !== 0) {
+    }
+    if (board[2] === board[5] && board[2] === board[8] && board[2] !== 0) {
       return board[2];
     }
     return 0;
@@ -35,7 +39,8 @@ const game = (() => {
   const checkDiagonal = () => {
     if (board[0] === board[4] && board[0] === board[8] && board[0] !== 0) {
       return board[0];
-    } if (board[2] === board[4] && board[2] === board[6] && board[2] !== 0) {
+    }
+    if (board[2] === board[4] && board[2] === board[6] && board[2] !== 0) {
       return board[2];
     }
     return 0;
@@ -44,14 +49,15 @@ const game = (() => {
   const checkWinner = () => {
     if (checkRow() !== 0 || checkColumn() !== 0 || checkDiagonal() !== 0) {
       return checkRow() + checkColumn() + checkDiagonal();
-    } if (!board.includes(0)) {
+    }
+    if (!board.includes(0)) {
       return 3;
     }
     return 0;
   };
 
   const move = (player, place) => {
-    if (player == 1) {
+    if (player === 1) {
       const cell = document.getElementById(place);
       cell.innerHTML = 'X';
     } else {
@@ -64,7 +70,7 @@ const game = (() => {
   const clearBoard = () => {
     board = [0, 0, 0, 0, 0, 0, 0, 0, 0];
     const winner = document.getElementById('winner');
-    for (let i = 0; i < 9; i++) {
+    for (let i = 0; i < 9; i += 1) {
       const cell = document.getElementById(`${i}`);
       cell.innerHTML = '';
     }
@@ -85,18 +91,18 @@ const game = (() => {
 })();
 
 function switchTurns(player) {
-  if (player == 1) {
+  if (player === 1) {
     document.getElementById('board').style.background = '#00c86a';
-    document.getElementById('chance').innerHTML = `${playerTwoName}'\s turn`;
+    document.getElementById('chance').innerHTML = `${playerTwoName}' turn`;
     return 2;
   }
   document.getElementById('board').style.background = '#c88300';
-  document.getElementById('chance').innerHTML = `${playerOneName}'\s turn`;
+  document.getElementById('chance').innerHTML = `${playerOneName}' turn`;
   return 1;
 }
 
 function addCellEvent(currentPlayer) {
-  for (let i = 0; i < 9; i++) {
+  for (let i = 0; i < 9; i += 1) {
     const cell = document.getElementById(`${i}`);
     cell.addEventListener('click', () => {
       board = game.board();
@@ -141,6 +147,24 @@ function decide(i) {
   header.appendChild(winnerText);
 }
 
+function RunnerFunction(player1, player2) {
+  if (document.getElementById('input-player1').value !== '') {
+    player1.name = document.getElementById('input-player1').value;
+    playerOneName = player1.name;
+  }
+  if (document.getElementById('input-player2').value !== '') {
+    player2.name = document.getElementById('input-player2').value;
+    playerTwoName = player2.name;
+  }
+  document.getElementById('board').style.background = '#c88300';
+  document.getElementById('chance').innerHTML = `${playerOneName}' turn`;
+  scoreBoard(player1, player2);
+  game.clearBoard();
+  const currentPlayer = 1;
+  game.board();
+  addCellEvent(currentPlayer);
+}
+
 function gameStarter() {
   const playerone = document.createElement('form');
   document.getElementById('playerone').appendChild(playerone);
@@ -165,24 +189,6 @@ function gameStarter() {
   player1 = player('Player 1', 1, 0);
   player2 = player('Player 2', 2, 0);
   startGame.onclick = () => RunnerFunction(player1, player2);
-}
-
-function RunnerFunction(player1, player2) {
-  if (document.getElementById('input-player1').value !== '') {
-    player1.name = document.getElementById('input-player1').value;
-    playerOneName = player1.name;
-  }
-  if (document.getElementById('input-player2').value !== '') {
-    player2.name = document.getElementById('input-player2').value;
-    playerTwoName = player2.name;
-  }
-  document.getElementById('board').style.background = '#c88300';
-  document.getElementById('chance').innerHTML = `${playerOneName}'\s turn`;
-  scoreBoard(player1, player2);
-  game.clearBoard();
-  const currentPlayer = 1;
-  game.board();
-  addCellEvent(currentPlayer);
 }
 
 gameStarter();
