@@ -6,6 +6,8 @@ const player = (name, symbol, score = 0) => ({
 
 let playerOneName = 'Player 1';
 let playerTwoName = 'Player 2';
+const player1 = player('Player 1', 1, 0);
+const player2 = player('Player 2', 2, 0);
 
 const game = (() => {
   let board = [0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -93,11 +95,11 @@ const game = (() => {
 function switchTurns(player) {
   if (player === 1) {
     document.getElementById('board').style.background = '#00c86a';
-    document.getElementById('chance').innerHTML = `${playerTwoName}' turn`;
+    document.getElementById('chance').innerHTML = `${playerTwoName}'s turn`;
     return 2;
   }
   document.getElementById('board').style.background = '#c88300';
-  document.getElementById('chance').innerHTML = `${playerOneName}' turn`;
+  document.getElementById('chance').innerHTML = `${playerOneName}'s turn`;
   return 1;
 }
 
@@ -105,7 +107,7 @@ function addCellEvent(currentPlayer) {
   for (let i = 0; i < 9; i += 1) {
     const cell = document.getElementById(`${i}`);
     cell.addEventListener('click', () => {
-      board = game.board();
+      const board = game.board();
       if (board[i] == 0) {
         cell.removeEventListener('click', game.move(currentPlayer, i));
         if (game.checkWinner() == 0) {
@@ -132,22 +134,23 @@ function decide(i) {
   const msgBoard = document.getElementById('winner');
   const header = document.createElement('h3');
   game.fillBoard();
+  var winnerText = '';
   msgBoard.appendChild(header);
   if (i == 1) {
-    var winnerText = document.createTextNode(`${player1.name} WINS!`);
+    winnerText = document.createTextNode(`${player1.name} WINS!`);
     player1.score++;
     document.getElementById('player1-score').innerHTML = `${player1.score}`;
   } else if (i == 2) {
-    var winnerText = document.createTextNode(`${player2.name} WINS!`);
+    winnerText = document.createTextNode(`${player2.name} WINS!`);
     player2.score++;
     document.getElementById('player2-score').innerHTML = `${player2.score}`;
   } else {
-    var winnerText = document.createTextNode('DRAW');
+    winnerText = document.createTextNode('DRAW');
   }
   header.appendChild(winnerText);
 }
 
-function RunnerFunction(player1, player2) {
+function RunnerFunction() {
   if (document.getElementById('input-player1').value !== '') {
     player1.name = document.getElementById('input-player1').value;
     playerOneName = player1.name;
@@ -158,7 +161,7 @@ function RunnerFunction(player1, player2) {
   }
   document.getElementById('board').style.background = '#c88300';
   document.getElementById('chance').innerHTML = `${playerOneName}' turn`;
-  scoreBoard(player1, player2);
+  scoreBoard();
   game.clearBoard();
   const currentPlayer = 1;
   game.board();
@@ -186,9 +189,7 @@ function gameStarter() {
   startGame.onclick = () => RunnerFunction();
   startGame.appendChild(document.createTextNode('START GAME'));
   document.getElementById('player-details').appendChild(startGame);
-  player1 = player('Player 1', 1, 0);
-  player2 = player('Player 2', 2, 0);
-  startGame.onclick = () => RunnerFunction(player1, player2);
+  startGame.onclick = () => RunnerFunction();
 }
 
 gameStarter();
