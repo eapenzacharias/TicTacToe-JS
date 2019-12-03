@@ -6,9 +6,9 @@ This is a project from the JavaScript part of the main curriculum for [Microvers
 * To use Factory Functions and The Module Pattern.
 * The project was completed using JavaScript, HTML and CSS.
 
-#### [Assignment link](https://www.theodinproject.com/courses/javascript/lessons/library)
+#### [Assignment link](https://www.theodinproject.com/courses/javascript/lessons/tic-tac-toe-javascript)
 
-#### [View live in browser](https://serdg0.github.io/library/)
+#### [View live in browser](#)
 
 ### Authors
  #### [@serdg0](https://github.com/serdg0/)
