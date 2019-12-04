@@ -124,12 +124,13 @@ function decide(i) {
 }
 
 function addCellEvent(currentPlayer) {
-  for (let i = 0; i < 9; i += 1) {
-    const cell = document.getElementById(`${i}`);
+  const arr = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+  arr.forEach((x) => {
+    const cell = document.getElementById(`${x}`);
     cell.addEventListener('click', () => {
       const board = game.board();
-      if (board[i] === 0) {
-        cell.removeEventListener('click', game.move(currentPlayer, i));
+      if (board[x] === 0) {
+        cell.removeEventListener('click', game.move(currentPlayer, x));
         if (game.checkWinner() === 0) {
           currentPlayer = switchTurns(currentPlayer);
           return currentPlayer;
@@ -137,7 +138,7 @@ function addCellEvent(currentPlayer) {
         decide(game.checkWinner());
       }
     });
-  }
+  });
 }
 
 function scoreBoard() {
