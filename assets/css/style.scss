@@ -1,0 +1,95 @@
+html {
+  height: 100%;
+  font-family: 'Fredoka One', cursive;
+  margin: 0;
+  body {
+    color: #f0f0f0;
+    background-color: #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 0;
+    h1 {
+      font-size: 45px;
+      font-weight: 300;
+      margin: 40px;
+    }
+    .container {
+      align-items: center;
+      flex: 1 0 auto;
+      display: flex;
+      flex-direction: column;
+    }
+    .board {
+      width: 390px;
+      height: 390px;
+      margin: 20px 0 15px 0;
+      background-color: #525252;
+      padding: 0;
+      .board-grid {
+        display: grid;
+        grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+        justify-content: stretch;
+        grid-gap: 10px;
+        height: 100%;
+        width: 100%;
+        .cell {
+          font-size: 50px;
+          font-weight: 800;
+          text-align: center;
+          padding: 31px 0;
+          background-color: #1a1a1a;
+        }
+      }
+    }
+    #chance {
+      margin: 5px 0 25px 0;
+    }
+    #winner {
+      h3 {
+        color: #ffffff;
+        font-size: 30px;
+        font-weight: 300;
+        margin: 15px;
+      }
+    }
+    .score-board {
+      height: 70px;
+      width: 200px;
+      margin: 5px 0 20px 0;
+      .scores {
+        width: 180px;
+        font-size: 20px;
+        margin: 5px;
+        #onesname {
+          color: #c88300;
+        }
+        #twosname {
+          color: #00c86a;
+        }
+      }
+    }
+    #player-details {
+      input {
+        border: none;
+        border-bottom: 1px solid #ffffff;
+        background-color: #1a1a1a;
+        color: #ffffff;
+        height: 25px;
+        width: 370px;
+        margin: 10px;
+        font-size: 18px;
+      }
+      button {
+        border: 2px solid #ffffff;
+        border-radius: 5px;
+        background-color: #1a1a1a;
+        margin: 20px 0 10px 0;
+        height: 45px;
+        font-size: 25px;
+        color: #ffffff;
+        width: 250px;
+      }
+    }
+  }
+}
