@@ -4,13 +4,12 @@ const player = (name, symbol, score = 0) => ({
   score,
 });
 
-let playerOneName = 'Player 1';
-let playerTwoName = 'Player 2';
-const player1 = player('Player 1', 1, 0);
-const player2 = player('Player 2', 2, 0);
 
 const game = (() => {
   let board = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+  const player1 = player('Player 1', 1, 0);
+  const player2 = player('Player 2', 2, 0);
+  let currentPlayer = 1;
 
   const checkRow = () => {
     if (board[0] === board[1] && board[0] === board[2] && board[0] !== 0) {
@@ -83,118 +82,111 @@ const game = (() => {
     board = [9, 9, 9, 9, 9, 9, 9, 9, 9];
   };
 
+  const switchTurns = () => {
+    if (currentPlayer === 1) {
+      document.getElementById('board').style.background = '#00c86a';
+      document.getElementById('chance').innerHTML = `${player2.name}'s turn`;
+      return 2;
+    }
+    document.getElementById('board').style.background = '#c88300';
+    document.getElementById('chance').innerHTML = `${player1.name}'s turn`;
+    return 1;
+  };
+
+  const decide = (i) => {
+    const msgBoard = document.getElementById('winner');
+    const header = document.createElement('h3');
+    fillBoard();
+    let winnerText = '';
+    msgBoard.appendChild(header);
+    if (i === 1) {
+      winnerText = document.createTextNode(`${player1.name} WINS!`);
+      player1.score += 1;
+      document.getElementById('player1-score').innerHTML = `${player1.score}`;
+    } else if (i === 2) {
+      winnerText = document.createTextNode(`${player2.name} WINS!`);
+      player2.score += 1;
+      document.getElementById('player2-score').innerHTML = `${player2.score}`;
+    } else {
+      winnerText = document.createTextNode('DRAW');
+    }
+    header.appendChild(winnerText);
+  };
+
+  const addCellEvent = () => {
+    const arr = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+    let winner = -1;
+    arr.forEach((x) => {
+      const cell = document.getElementById(`${x}`);
+      cell.addEventListener('click', () => {
+        if (board[x] === 0) {
+          cell.removeEventListener('click', move(currentPlayer, x));
+          if (checkWinner() === 0) {
+            currentPlayer = switchTurns();
+            return currentPlayer;
+          }
+          winner = decide(checkWinner());
+        }
+        return winner;
+      });
+    });
+  };
+
+  const scoreBoard = () => {
+    const scorePlayer1 = document.getElementById('player1-score');
+    const scorePlayer2 = document.getElementById('player2-score');
+    const onesName = document.getElementById('onesname');
+    const twosName = document.getElementById('twosname');
+    scorePlayer1.innerHTML = `${player1.score}`;
+    scorePlayer2.innerHTML = `${player2.score}`;
+    onesName.innerHTML = `${player1.name}: &nbsp;`;
+    twosName.innerHTML = `${player2.name}: &nbsp;`;
+  };
+
+  const RunnerFunction = () => {
+    document.getElementById('start-button').innerHTML = 'RESET GAME';
+    if (document.getElementById('input-player1').value !== '') {
+      player1.name = document.getElementById('input-player1').value;
+    }
+    if (document.getElementById('input-player2').value !== '') {
+      player2.name = document.getElementById('input-player2').value;
+    }
+    document.getElementById('board').style.background = '#c88300';
+    document.getElementById('chance').innerHTML = `${player1.name}' turn`;
+    document.getElementById('playerone').style.display = 'none';
+    document.getElementById('playertwo').style.display = 'none';
+    scoreBoard();
+    clearBoard();
+    addCellEvent();
+  };
+
+  const gameStarter = () => {
+    const playerone = document.createElement('form');
+    document.getElementById('playerone').appendChild(playerone);
+    const inputOneName = document.createElement('input');
+    inputOneName.setAttribute('type', 'text');
+    inputOneName.setAttribute('id', 'input-player1');
+    inputOneName.setAttribute('placeholder', 'Name of Player 1');
+    playerone.appendChild(inputOneName);
+
+    const playertwo = document.createElement('form');
+    document.getElementById('playertwo').appendChild(playertwo);
+    const inputTwoName = document.createElement('input');
+    inputTwoName.setAttribute('type', 'text');
+    inputTwoName.setAttribute('id', 'input-player2');
+    inputTwoName.setAttribute('placeholder', 'Name of Player 2');
+    playertwo.appendChild(inputTwoName);
+
+    const startGame = document.createElement('button');
+    startGame.setAttribute('id', 'start-button');
+    startGame.appendChild(document.createTextNode('START GAME'));
+    document.getElementById('player-details').appendChild(startGame);
+    startGame.onclick = () => RunnerFunction();
+  };
+
   return {
-    board: () => board,
-    move,
-    checkWinner,
-    clearBoard,
-    fillBoard,
+    gameStarter
   };
 })();
 
-function switchTurns(player) {
-  if (player === 1) {
-    document.getElementById('board').style.background = '#00c86a';
-    document.getElementById('chance').innerHTML = `${playerTwoName}'s turn`;
-    return 2;
-  }
-  document.getElementById('board').style.background = '#c88300';
-  document.getElementById('chance').innerHTML = `${playerOneName}'s turn`;
-  return 1;
-}
-
-function decide(i) {
-  const msgBoard = document.getElementById('winner');
-  const header = document.createElement('h3');
-  game.fillBoard();
-  let winnerText = '';
-  msgBoard.appendChild(header);
-  if (i === 1) {
-    winnerText = document.createTextNode(`${player1.name} WINS!`);
-    player1.score += 1;
-    document.getElementById('player1-score').innerHTML = `${player1.score}`;
-  } else if (i === 2) {
-    winnerText = document.createTextNode(`${player2.name} WINS!`);
-    player2.score += 1;
-    document.getElementById('player2-score').innerHTML = `${player2.score}`;
-  } else {
-    winnerText = document.createTextNode('DRAW');
-  }
-  header.appendChild(winnerText);
-}
-
-function addCellEvent(currentPlayer) {
-  const arr = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-  let winner = -1;
-  arr.forEach((x) => {
-    const cell = document.getElementById(`${x}`);
-    cell.addEventListener('click', () => {
-      const board = game.board();
-      if (board[x] === 0) {
-        cell.removeEventListener('click', game.move(currentPlayer, x));
-        if (game.checkWinner() === 0) {
-          currentPlayer = switchTurns(currentPlayer);
-          return currentPlayer;
-        }
-        winner = decide(game.checkWinner());
-      }
-      return winner;
-    });
-  });
-}
-
-function scoreBoard() {
-  const scorePlayer1 = document.getElementById('player1-score');
-  const scorePlayer2 = document.getElementById('player2-score');
-  const onesName = document.getElementById('onesname');
-  const twosName = document.getElementById('twosname');
-  scorePlayer1.innerHTML = `${player1.score}`;
-  scorePlayer2.innerHTML = `${player2.score}`;
-  onesName.innerHTML = `${playerOneName}: &nbsp;`;
-  twosName.innerHTML = `${playerTwoName}: &nbsp;`;
-}
-
-
-function RunnerFunction() {
-  if (document.getElementById('input-player1').value !== '') {
-    player1.name = document.getElementById('input-player1').value;
-    playerOneName = player1.name;
-  }
-  if (document.getElementById('input-player2').value !== '') {
-    player2.name = document.getElementById('input-player2').value;
-    playerTwoName = player2.name;
-  }
-  document.getElementById('board').style.background = '#c88300';
-  document.getElementById('chance').innerHTML = `${playerOneName}' turn`;
-  scoreBoard();
-  game.clearBoard();
-  const currentPlayer = 1;
-  game.board();
-  addCellEvent(currentPlayer);
-}
-
-function gameStarter() {
-  const playerone = document.createElement('form');
-  document.getElementById('playerone').appendChild(playerone);
-  const inputOneName = document.createElement('input');
-  inputOneName.setAttribute('type', 'text');
-  inputOneName.setAttribute('id', 'input-player1');
-  inputOneName.setAttribute('placeholder', 'Name of Player 1');
-  playerone.appendChild(inputOneName);
-
-  const playertwo = document.createElement('form');
-  document.getElementById('playertwo').appendChild(playertwo);
-  const inputTwoName = document.createElement('input');
-  inputTwoName.setAttribute('type', 'text');
-  inputTwoName.setAttribute('id', 'input-player2');
-  inputTwoName.setAttribute('placeholder', 'Name of Player 2');
-  playertwo.appendChild(inputTwoName);
-
-  const startGame = document.createElement('button');
-  startGame.onclick = () => RunnerFunction();
-  startGame.appendChild(document.createTextNode('START GAME'));
-  document.getElementById('player-details').appendChild(startGame);
-  startGame.onclick = () => RunnerFunction();
-}
-
-gameStarter();
+game.gameStarter();
