@@ -185,7 +185,7 @@ const game = (() => {
   };
 
   return {
-    gameStarter
+    gameStarter,
   };
 })();
 
