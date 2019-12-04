@@ -1,0 +1,125 @@
+html {
+  height: 100%;
+  font-family: 'Fredoka One', cursive;
+  margin: 0;
+}
+
+html body {
+  color: #f0f0f0;
+  background-color: #1a1a1a;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: center;
+  margin: 0;
+}
+
+html body h1 {
+  font-size: 45px;
+  font-weight: 300;
+  margin: 40px;
+}
+
+html body .container {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 auto;
+          flex: 1 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+html body .board {
+  width: 390px;
+  height: 390px;
+  margin: 20px 0 15px 0;
+  background-color: #525252;
+  padding: 0;
+}
+
+html body .board .board-grid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: (1fr)[3];
+  -ms-grid-columns: (1fr)[3];
+      grid-template: repeat(3, 1fr)/repeat(3, 1fr);
+  -webkit-box-pack: stretch;
+      -ms-flex-pack: stretch;
+          justify-content: stretch;
+  grid-gap: 10px;
+  height: 100%;
+  width: 100%;
+}
+
+html body .board .board-grid .cell {
+  font-size: 50px;
+  font-weight: 800;
+  text-align: center;
+  padding: 31px 0;
+  background-color: #1a1a1a;
+}
+
+html body #chance {
+  margin: 5px 0 25px 0;
+}
+
+html body #winner h3 {
+  color: #ffffff;
+  font-size: 30px;
+  font-weight: 300;
+  margin: 15px;
+}
+
+html body .score-board {
+  height: 70px;
+  width: 200px;
+  margin: 5px 0 20px 0;
+}
+
+html body .score-board .scores {
+  width: 180px;
+  font-size: 20px;
+  margin: 5px;
+}
+
+html body .score-board .scores #onesname {
+  color: #c88300;
+}
+
+html body .score-board .scores #twosname {
+  color: #00c86a;
+}
+
+html body #player-details input {
+  border: none;
+  border-bottom: 1px solid #ffffff;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  height: 25px;
+  width: 370px;
+  margin: 10px;
+  font-size: 18px;
+}
+
+html body #player-details button {
+  border: 2px solid #ffffff;
+  border-radius: 5px;
+  background-color: #1a1a1a;
+  margin: 20px 0 10px 0;
+  height: 45px;
+  font-size: 25px;
+  color: #ffffff;
+  width: 250px;
+}
+/*# sourceMappingURL=style.css.map */

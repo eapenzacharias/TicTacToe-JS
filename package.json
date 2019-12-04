@@ -1,0 +1,27 @@
+{
+  "name": "tictactoe-js",
+  "version": "1.0.0",
+  "description": "tic tac toe game in js for browser",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^6.7.2",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "prettier": "^1.19.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eapenzacharias/TicTacToe-JS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eapenzacharias/TicTacToe-JS/issues"
+  },
+  "homepage": "https://github.com/eapenzacharias/TicTacToe-JS#readme"
+}
