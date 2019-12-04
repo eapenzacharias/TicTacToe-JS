@@ -125,6 +125,7 @@ function decide(i) {
 
 function addCellEvent(currentPlayer) {
   const arr = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+  let winner = -1;
   arr.forEach((x) => {
     const cell = document.getElementById(`${x}`);
     cell.addEventListener('click', () => {
@@ -135,8 +136,9 @@ function addCellEvent(currentPlayer) {
           currentPlayer = switchTurns(currentPlayer);
           return currentPlayer;
         }
-        decide(game.checkWinner());
+        winner = decide(game.checkWinner());
       }
+      return winner;
     });
   });
 }
