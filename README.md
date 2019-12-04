@@ -8,7 +8,7 @@ This is a project from the JavaScript part of the main curriculum for [Microvers
 
 #### [Assignment link](https://www.theodinproject.com/courses/javascript/lessons/tic-tac-toe-javascript)
 
-#### [View live in browser](#)
+#### [View live in browser](https://eapenzacharias.github.io/TicTacToe-JS/)
 
 ### Authors
  #### [@serdg0](https://github.com/serdg0/)
