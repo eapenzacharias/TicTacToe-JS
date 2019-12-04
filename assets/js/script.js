@@ -1,7 +1,7 @@
 const player = (name, symbol, score = 0) => ({
   name,
   symbol,
-  score,
+  score
 });
 
 
